@@ -16,7 +16,8 @@ func New() *FiberServer {
 		}),
 	}
 
-	server.App.Static("/", "/client")
+	server.App.Static("", "/public")
 
 	return server
+
 }

@@ -4,9 +4,8 @@ export default defineConfig( ({ command, mode }) => {
     /**@type {import("vite").UserConfig} */
     const common = {
         build: {
-            manifest: true,
             minify: true,
-            outDir: "../server/public"
+            outDir: "../server/embed/public"
         }
     }
     if (command === "serve") {
