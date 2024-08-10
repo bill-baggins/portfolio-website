@@ -1,19 +1,19 @@
 package main
 
 import (
-	"log"
+	"fmt"
+	"os"
+	app "server/src"
+	"strconv"
 
-	"github.com/gofiber/fiber/v2"
+	_ "github.com/joho/godotenv/autoload"
 )
 
 func main() {
-	app := fiber.New()
-
-	app.Static("/", "../client/public")
-
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.Status(200).SendString("Hello World!")
-	})
-
-	log.Fatal(app.Listen(":8080"))
+	app := app.New()
+	port, _ := strconv.Atoi(os.Getenv("PORT"))
+	err := app.Listen(fmt.Sprintf(":%d", port))
+	if err != nil {
+		panic(fmt.Sprintf("cannot start server: %s", err))
+	}
 }
